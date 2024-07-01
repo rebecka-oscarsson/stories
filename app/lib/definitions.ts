@@ -5,7 +5,7 @@
 //   backgroundImage: string;
 // };
 
-export type NavLink = { id: number; linkName: string; url: string };
+export type NavLink = { linkName: string; url: string };
 
 export type Chapter = {
   id: number,

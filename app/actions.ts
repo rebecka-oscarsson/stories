@@ -27,7 +27,7 @@ export async function addChapter(prevState: any, formData: FormData) {
       (SELECT story_id FROM current_story), $1, $2, now(), $3)`, [title, author, chapter]
     );
     //await client?.end(); //har jag med det här funkar det ej
-    console.log('från actions.ts', result);
+    console.log('från actions.ts', result?.rows);
     return { message: title };
   } catch (e) {
     //   revalidatePath('/')
