@@ -5,8 +5,8 @@ import { connectDb } from '@/app/db'
 export async function GET(request: Request) {
   const client = await connectDb()
   const result = await client?.query("SELECT * FROM story order by position");
-  return NextResponse.json({'stories': result?.rows
-  });
+  return NextResponse.json(result?.rows
+  );
 }
 
 // Handles POST requests to /api
