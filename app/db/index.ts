@@ -1,7 +1,9 @@
-import { Client, Pool } from "pg";
+import { Pool } from "pg";
 
 export const connectDb = async () => {
   try {
+    //om jag skriver new Client blir det bara en anslutning och det är dåligt
+    //för jag måste ansluta varje gång jag gör en query
       const pool = new Pool({
           user: process.env.PGUSER,
           host: process.env.PGHOST,
@@ -12,22 +14,8 @@ export const connectDb = async () => {
       await pool.connect()
       return pool
   } catch (error) {
-      console.log(error)
+      console.log('nu blev det fel', error)
   }
-}
-
-//används ej ta bort
-export async function connectClient() {
-const client = 
-  new Client({
-  host: process.env.PGHOST,
-  port: Number(process.env.PGPORT), //måste göras för typescript klagar annars
-  database: process.env.PGDATABASE,
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-});
-await client.connect()
-return client
 }
 
 
