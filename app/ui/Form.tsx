@@ -4,9 +4,7 @@ import { useFormState } from 'react-dom'
 import { useFormStatus } from 'react-dom'
 import { addChapter } from '@/app/actions'
 
-const initialState = {
-  message: null,
-}
+const initialState = 'write your chapter'
 
 function SubmitButton() {
   //The useFormStatus Hook only returns status information for a parent <form>
@@ -19,21 +17,19 @@ function SubmitButton() {
 }
 
 export function Form() {
- 
   const [state, formAction] = useFormState(addChapter, initialState)
 
   return (
-    <form action={formAction}>
+    <form action={formAction} key={state}> 
+    {/* key med state används för att formuläret ska tömmas när man skickat in kapitlet och state ändras */}
       <label htmlFor="author">Author/pseodonym</label>
       <input type="text" id="author" name="author" required />
       <label htmlFor="chapter">Title of your chapter</label>
       <input type="text" id="title" name="title" required />
       <label htmlFor="chapter">Contents of your chapter</label>
       <textarea id="chapter" name="chapter" required />
-      <SubmitButton />
-      <p aria-live="polite" className="sr-only" role="status">
-        {state?.message ? state?.message.toString() : null}
-      </p>
+      <SubmitButton />    
+      {state}
     </form>
   )
 }

@@ -13,7 +13,7 @@ export async function getData(url:string) {
   return res.json()
 }
 
-export async function addChapter(prevState: any, formData: FormData) {
+export async function addChapter(prevState: string, formData: FormData) {
   const chapter = formData.get("chapter");
   const title = formData.get("title");
   const author = formData.get("author");
@@ -28,10 +28,12 @@ export async function addChapter(prevState: any, formData: FormData) {
     );
     //await client?.end(); //har jag med det här funkar det ej
     console.log('från actions.ts', result?.rows);
-    return { message: title };
+    revalidatePath('/write')
+    return 'Your chapter called ' + title + ' was submitted';
+    
   } catch (e) {
-    //   revalidatePath('/')
+    
     //här ska jag validera den path som hämtar datan om kapitel eller sagor
-    return { message: "nehepp, " + e };
+    return "nehepp, " + e;
   } 
 }

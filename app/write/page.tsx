@@ -1,4 +1,4 @@
-import { Form } from '@/app/form'
+import { Form } from '@/app/ui/Form'
 import { getData } from '@/app/actions'
 import BookContents from '@/app/ui/BookContents';
 

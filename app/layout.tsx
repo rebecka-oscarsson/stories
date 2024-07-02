@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <NavLinks links={[{ linkName: 'write', url: '/write' }, { linkName: 'bookshelf', url: '/bookshelf' }]} />{children}
+        <NavLinks links={[{ linkName: 'bookshelf', url: '/' }, { linkName: 'write', url: '/write' }]} />{children}
       </body>
     </html>
   )
