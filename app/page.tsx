@@ -1,17 +1,23 @@
-//startsidan (ska göras om till navigationen och bokhyllan ska visas först)
+import BookCover from '@/app/ui/BookCover';
+import { getData } from '@/app/actions'
 
-import Link from 'next/link'
+interface Story {
+  title: string,
+  id: number,
+  position: number
+}
 
+export default async function BookShelf() {
 
-export default async function Start() {
+  const stories:Story[] = await getData("/stories")
+
   return (
-    <ul>
-    <li >
-      <Link href='/write'>write</Link>
-    </li>
-    <li >
-      <Link href='/bookshelf'>bookshelf</Link>
-    </li>
-    </ul>
+    <main>
+      <ul>
+        {stories.map((story) =>
+          <BookCover key={story.id} id={story.id} title={story.title}></BookCover>
+        )}
+      </ul>
+    </main>
   )
 }
