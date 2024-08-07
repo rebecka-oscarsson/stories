@@ -1,9 +1,4 @@
-// export type Hero = {
-//   overline: string;
-//   headline: string;
-//   paragraph: string;
-//   backgroundImage: string;
-// };
+
 
 export type NavLink = { linkName: string; url: string };
 
