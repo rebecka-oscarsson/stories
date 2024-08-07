@@ -4,6 +4,11 @@ import { useFormState } from 'react-dom'
 import { useFormStatus } from 'react-dom'
 import { addChapter } from '@/app/actions'
 
+type FormProps = {
+  firstChapter: boolean,
+  lastChapter: boolean
+};
+
 const initialState = 'write your chapter'
 
 function SubmitButton() {
@@ -16,19 +21,23 @@ function SubmitButton() {
   )
 }
 
-export function Form() {
+export function Form({ firstChapter, lastChapter }: FormProps) {
   const [state, formAction] = useFormState(addChapter, initialState)
 
   return (
-    <form action={formAction} key={state}> 
-    {/* key med state används för att formuläret ska tömmas när man skickat in kapitlet och state ändras */}
+
+    <form action={formAction} key={state}>
+      {lastChapter && <div>This is the last chapter, please write an ending for the story</div>}
+      {/* key med state används för att formuläret ska tömmas när man skickat in kapitlet och state ändras */}
       <label htmlFor="author">Author/pseodonym</label>
       <input type="text" id="author" name="author" required />
+      {firstChapter && <div><label htmlFor="storyTitle">Title for the new story</label>
+        <input type="text" id="storyTitle" name="storyTitle" required /></div>}
       <label htmlFor="chapter">Title of your chapter</label>
       <input type="text" id="title" name="title" required />
       <label htmlFor="chapter">Contents of your chapter</label>
       <textarea id="chapter" name="chapter" required />
-      <SubmitButton />    
+      <SubmitButton />
       {state}
     </form>
   )

@@ -4,11 +4,11 @@ import BookContents from '@/app/ui/BookContents';
 
 export default async function Write(
 ) {
-  const currentStoryId = await getData("/current_story");
+  const currentStory = await getData("/current_story");
   return (
     <main>
-      <Form />
-      {currentStoryId ? <BookContents id={currentStoryId} /> : 'loading' }
+      <Form firstChapter = {currentStory.firstChapter} lastChapter = {currentStory.lastChapter}/>
+      {currentStory.firstChapter ? <div>Your chapter will be the start of a new story</div> : <BookContents id={currentStory.id} />}
     </main>
   )
 }
